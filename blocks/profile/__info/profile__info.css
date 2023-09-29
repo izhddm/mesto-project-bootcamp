@@ -1,0 +1,11 @@
+.profile__info {
+  margin: 0;
+
+  display: grid;
+  grid-template-areas:
+    "avatar title add-btn"
+    "avatar subtitle add-btn";
+  grid-template-columns: min-content auto 1fr;
+  align-items: center;
+  column-gap: 30px;
+}

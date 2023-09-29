@@ -1,0 +1,10 @@
+.profile__add-button {
+  grid-area: add-btn;
+  margin-left: auto;
+  min-width: 150px;
+  height: 50px;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  background: url(../../../images/profile-add-button.svg) no-repeat 50% 50%;
+  box-sizing: border-box;
+}

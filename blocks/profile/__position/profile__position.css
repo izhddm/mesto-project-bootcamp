@@ -1,0 +1,15 @@
+.profile__position {
+  grid-area: subtitle;
+  align-self: flex-start;
+  margin: 6px 0 0 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  max-width: 550px;
+}
