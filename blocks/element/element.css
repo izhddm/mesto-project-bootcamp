@@ -1,0 +1,8 @@
+.element {
+  list-style: none;
+  color: #000;
+
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
