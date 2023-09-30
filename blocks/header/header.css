@@ -2,3 +2,9 @@
   width: 100%;
   margin: 45px 0 0;
 }
+
+@media screen and (max-width: 424px) {
+  .header {
+    margin-top: 28px;
+  }
+}
