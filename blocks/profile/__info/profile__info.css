@@ -5,9 +5,16 @@
   grid-template-areas:
     "avatar title add-btn"
     "avatar subtitle add-btn";
-  grid-template-columns: min-content minmax(0, 1fr) min-content;
+  /*grid-templa\te-columns: min-content minmax(0, 1fr) minmax(30px, 150px);*/
+  grid-template-columns: min-content minmax(200px, 1fr) minmax(50px, 150px);
   align-items: center;
   column-gap: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    column-gap: 15px;
+  }
 }
 
 @media screen and (max-width: 424px) {

@@ -1,7 +1,7 @@
 .profile__add-button {
   grid-area: add-btn;
   margin-left: auto;
-  min-width: 150px;
+  width: 100%;
   height: 50px;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
@@ -12,7 +12,6 @@
 @media screen and (max-width: 424px) {
   .profile__add-button {
     margin: 32px 0 0 0;
-    min-width: unset;
-    width: 100%;
+    max-width: unset;
   }
 }
