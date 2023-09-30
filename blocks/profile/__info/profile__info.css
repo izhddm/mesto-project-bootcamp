@@ -5,7 +5,7 @@
   grid-template-areas:
     "avatar title add-btn"
     "avatar subtitle add-btn";
-  grid-template-columns: min-content auto 1fr;
+  grid-template-columns: min-content minmax(0, 1fr) min-content;
   align-items: center;
   column-gap: 30px;
 }
