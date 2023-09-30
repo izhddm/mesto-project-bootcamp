@@ -9,3 +9,17 @@
   align-items: center;
   column-gap: 30px;
 }
+
+@media screen and (max-width: 424px) {
+  .profile__info {
+    grid-template-areas:
+    "avatar"
+    "title"
+    "subtitle"
+    "add-btn";
+    column-gap: unset;
+    grid-template-columns: 1fr;
+    justify-items: center
+  }
+
+}

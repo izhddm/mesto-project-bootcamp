@@ -8,3 +8,12 @@
   width: 100%;
   max-width: 545px;
 }
+
+@media screen and (max-width: 424px) {
+  .profile__caption {
+    justify-content: center;
+    margin-top: 26px;
+    gap: 10px;
+    max-width: 280px;
+  }
+}
