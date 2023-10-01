@@ -1,6 +1,9 @@
 @import "../vendor/normalize.css";
 @import "../fonts/inter/fonts.css";
 
+@import "../blocks/logo/logo.css";
+@import "../blocks/logo/_black/logo_black.css";
+
 @import "../blocks/page/page.css";
 @import "../blocks/page/__container/page__container.css";
 @import "../blocks/page/__content/page__content.css";
