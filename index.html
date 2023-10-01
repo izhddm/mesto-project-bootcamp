@@ -77,5 +77,23 @@
   </footer>
 </div>
 
+<div class="popup">
+  <div class="popup__container">
+    <button class="popup__close-button"></button>
+    <h2 class="popup__title">Редактировать профиль</h2>
+    <form class="popup__form">
+      <fieldset class="popup__fieldset">
+        <input class="popup__input" maxlength="100" minlength="2" placeholder="Имя пользователя" required
+               type="text" value="Жак-Ив Кусто">
+        <div class="divider popup__input-divider"></div>
+        <input class="popup__input" minlength="2" maxlength="200" placeholder="Должность пользователя"
+               value="Исследователь океана" required type="text">
+        <div class="divider popup__input-divider"></div>
+      </fieldset>
+      <button class="popup__submit" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
