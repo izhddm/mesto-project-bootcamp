@@ -5,4 +5,11 @@
   width: 22px;
   height: 19px;
   cursor: pointer;
+
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.heart:hover {
+  opacity: .5;
 }
