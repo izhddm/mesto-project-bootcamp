@@ -1,5 +1,8 @@
-.heart{
+.heart {
+  border: 0;
   background-image: url("../../images/heart.svg");
+  background-color: rgba(0, 0, 0, 0);
   width: 22px;
   height: 19px;
+  cursor: pointer;
 }
