@@ -23,6 +23,7 @@
 @import "../blocks/profile/__edit-button/profile__edit-button.css";
 
 @import "../blocks/heart/heart.css";
+@import "../blocks/heart/_active/heart_active.css";
 
 @import "../blocks/cards/cards.css";
 @import "../blocks/elements/elements.css";
