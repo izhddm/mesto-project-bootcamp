@@ -19,7 +19,7 @@
 }
 
 @media screen and (max-width: 424px) {
-  .popup__submit{
+  .popup__submit {
     margin-top: 43px;
     font-size: 14px;
     min-height: 46px;
