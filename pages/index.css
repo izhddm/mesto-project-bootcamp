@@ -10,9 +10,6 @@
 
 @import "../blocks/header/header.css";
 @import "../blocks/header/__logo/header__logo.css";
-@import "../blocks/header/__divider/header__divider.css";
-
-@import "../blocks/divider/divider.css";
 
 @import "../blocks/content/content.css";
 
