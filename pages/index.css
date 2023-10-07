@@ -29,7 +29,7 @@
 @import "../blocks/heart/_active/heart_active.css";
 
 @import "../blocks/cards/cards.css";
-@import "../blocks/elements/elements.css";
+@import "../blocks/cards/__elements/cards__elements.css";
 
 @import "../blocks/element/element.css";
 @import "../blocks/element/__image/element__image.css";
