@@ -1,4 +1,4 @@
-.profile__position {
+.profile__job {
   grid-area: subtitle;
   align-self: flex-start;
   margin: 6px 0 0 0;
@@ -16,13 +16,13 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__position {
+  .profile__job {
     font-size: 13px;
   }
 }
 
 @media screen and (max-width: 424px) {
-  .profile__position {
+  .profile__job {
     text-align: center;
     font-size: 14px;
     margin-top: 9px;
