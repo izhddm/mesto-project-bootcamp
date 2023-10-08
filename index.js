@@ -15,11 +15,16 @@ const popupProfileJob = popupProfileForm.querySelector('.popup__input-job');
 const popupNewCard = document.querySelector('.popup-new-card');
 const popupNewCardForm = popupNewCard.querySelector('.popup__form');
 
+const popupImage = document.querySelector('.popup-image');
+const popupImageImg = popupImage.querySelector('.popup__image');
+const popupImageCaption = popupImage.querySelector('.popup__image-caption');
+
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 
 /* Карточки с городами */
 const cardsBlock = document.querySelector('.cards');
-const cardsElements = cardsBlock.querySelector('.cards__elements');
+const cardsElement = cardsBlock.querySelector('.cards__elements');
+const elementImages = cardsElement.querySelectorAll('.element__image');
 const cardAddBtn = profileInfoElement.querySelector('.profile__add-button');
 
 
@@ -106,13 +111,28 @@ function deleteCardElement(element) {
   element.remove();
 }
 
+function initImagePopup(name, link) {
+  popupImageImg.src = link;
+  popupImageImg.alt = name;
+  popupImageCaption.textContent = name;
+
+  openPopup(popupImage);
+}
+
 function createCardElement(name, link) {
   const cardElement = cardElementTemplate.cloneNode(true);
 
   // Запишем нужные данные в карточку
   const img = cardElement.querySelector('.element__image');
-  img.setAttribute('src', link);
-  img.setAttribute('alt', name);
+  img.src = link;
+  img.alt = name;
+
+  // Событие на клик по картинке
+  img.addEventListener('click', evt => {
+    const image = evt.target;
+
+    initImagePopup(image.alt, image.src);
+  });
 
   cardElement.querySelector('.element__title').textContent = name;
 
@@ -129,7 +149,8 @@ function createCardElement(name, link) {
     deleteCardElement(cardsElement);
   })
 
-  cardsElements.append(cardElement);
+
+  cardsElement.append(cardElement);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
