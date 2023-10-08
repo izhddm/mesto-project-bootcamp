@@ -1,24 +1,19 @@
 /* Секция Profile */
 const profileBlock = document.querySelector('.profile');
 const profileInfoElement = profileBlock.querySelector('.profile__info');
-// const avatarElement = profileInfoElement.querySelector('.profile__avatar');
 const profileCaptionElement = profileInfoElement.querySelector('.profile__caption');
 const profileTitleElement = profileCaptionElement.querySelector('.profile__title');
 const profileEditBtnElement = profileCaptionElement.querySelector('.profile__edit-button');
 const profileJobElement = profileInfoElement.querySelector('.profile__job');
-// const addButtonElement = profileInfoElement.querySelector('.profile__add-button');
 
 /* Попапы */
 const popupProfile = document.querySelector('.popup-profile');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupProfileUsername = popupProfileForm.querySelector('.popup__input-username');
 const popupProfileJob = popupProfileForm.querySelector('.popup__input-job');
-// const popupProfileFormSaveBtn = popupProfileForm.querySelector('.popup__submit');
 
 const popupNewCard = document.querySelector('.popup-new-card');
 const popupNewCardForm = popupNewCard.querySelector('.popup__form');
-const popupNewCardName = popupNewCardForm.querySelector('.popup__input-name');
-const popupNewCardLink = popupNewCardForm.querySelector('.popup__input-link');
 
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 
@@ -111,7 +106,7 @@ function deleteCardElement(element) {
   element.remove();
 }
 
-function addNewCard(name, link) {
+function createCardElement(name, link) {
   const cardElement = cardElementTemplate.cloneNode(true);
 
   // Запишем нужные данные в карточку
@@ -139,7 +134,7 @@ function addNewCard(name, link) {
 
 document.addEventListener('DOMContentLoaded', () => {
   initialCards.forEach(item => {
-    addNewCard(item.name, item.link);
+    createCardElement(item.name, item.link);
   });
 });
 
@@ -153,7 +148,7 @@ popupNewCardForm.addEventListener('submit', (evt) => {
   const name = evt.target.querySelector('.popup__input-name').value;
   const link = evt.target.querySelector('.popup__input-link').value;
 
-  addNewCard(name, link);
+  createCardElement(name, link);
 
   // Закроем форму
   const popupParent = evt.currentTarget.closest('.popup'); // Ближайший родитель с классом .popup
