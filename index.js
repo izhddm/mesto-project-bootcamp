@@ -13,9 +13,50 @@ const popupProfile = document.querySelector('.popup-profile');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupProfileUsername = popupProfileForm.querySelector('.popup__input-username');
 const popupProfileJob = popupProfileForm.querySelector('.popup__input-job');
-const popupProfileFormSaveBtn = popupProfileForm.querySelector('.popup__submit');
+// const popupProfileFormSaveBtn = popupProfileForm.querySelector('.popup__submit');
+
+const popupNewCard = document.querySelector('.popup-new-card');
+const popupNewCardForm = popupNewCard.querySelector('.popup__form');
+const popupNewCardName = popupNewCardForm.querySelector('.popup__input-name');
+const popupNewCardLink = popupNewCardForm.querySelector('.popup__input-link');
 
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
+
+/* Карточки с городами */
+const cardsBlock = document.querySelector('.cards');
+const cardsElements = cardsBlock.querySelector('.cards__elements');
+const cardAddBtn = profileInfoElement.querySelector('.profile__add-button');
+
+
+const cardElementTemplate = document.getElementById('cardElementTemplate').content; // Шаблон карточки
+
+// Данные для дефолтных карточек
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -49,11 +90,74 @@ profileEditBtnElement.addEventListener('click', () => {
 popupProfileForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  profileTitleElement.textContent = popupProfileUsername.value;
-  profileJobElement.textContent = popupProfileJob.value;
+  profileTitleElement.textContent = evt.target.querySelector('.popup__input-username').value;
+  profileJobElement.textContent = evt.target.querySelector('.popup__input-job').value;
 
   // Закроем форму
   const popupParent = evt.currentTarget.closest('.popup'); // Ближайший родитель с классом .popup
 
   closePopup(popupParent);
 });
+
+/*
+* Функционал для работы с карточками
+*/
+
+function likeHeart(heartElement) {
+  heartElement.classList.toggle('heart_active');
+}
+
+function deleteCardElement(element) {
+  element.remove();
+}
+
+function addNewCard(name, link) {
+  const cardElement = cardElementTemplate.cloneNode(true);
+
+  // Запишем нужные данные в карточку
+  const img = cardElement.querySelector('.element__image');
+  img.setAttribute('src', link);
+  img.setAttribute('alt', name);
+
+  cardElement.querySelector('.element__title').textContent = name;
+
+  // Событие клика на сердце
+  const heartElement = cardElement.querySelector('.heart');
+  heartElement.addEventListener('click', evt => likeHeart(evt.target));
+
+  // Событие клика на корзину
+  const trashElement = cardElement.querySelector('.element__trash');
+  trashElement.addEventListener('click', evt => {
+    const trashElement = evt.target;
+    const cardsElement = trashElement.closest('.element');
+
+    deleteCardElement(cardsElement);
+  })
+
+  cardsElements.append(cardElement);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initialCards.forEach(item => {
+    addNewCard(item.name, item.link);
+  });
+});
+
+cardAddBtn.addEventListener('click', () => {
+  openPopup(popupNewCard);
+});
+
+popupNewCardForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  const name = evt.target.querySelector('.popup__input-name').value;
+  const link = evt.target.querySelector('.popup__input-link').value;
+
+  addNewCard(name, link);
+
+  // Закроем форму
+  const popupParent = evt.currentTarget.closest('.popup'); // Ближайший родитель с классом .popup
+
+  closePopup(popupParent);
+});
+

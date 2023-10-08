@@ -25,48 +25,6 @@
     </section>
     <section class="cards" aria-label="Карточки с местами">
       <ul class="cards__elements">
-        <li class="element">
-          <img src="./images/cards/karachaevsk.jpg" alt="Карачаевск" class="element__image">
-          <div class="element__footer">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="heart element__heart" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/cards/mountain-elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-          <div class="element__footer">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="heart element__heart" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/cards/dombay.jpg" alt="Домбай" class="element__image">
-          <div class="element__footer">
-            <h2 class="element__title">Домбай</h2>
-            <button class="heart element__heart" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/cards/mountain-elbrus2.jpg" alt="Гора Эльбрус" class="element__image">
-          <div class="element__footer">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="heart element__heart" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/cards/dombay2.jpg" alt="Домбай" class="element__image">
-          <div class="element__footer">
-            <h2 class="element__title">Домбай</h2>
-            <button class="heart element__heart" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/cards/karachay-cherkessia.jpg" alt="Карачаево-Черкесия" class="element__image">
-          <div class="element__footer">
-            <h2 class="element__title">Карачаево-Черкесия</h2>
-            <button class="heart heart_active element__heart" type="button"></button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
@@ -81,7 +39,8 @@
     <h2 class="popup__title">Редактировать профиль</h2>
     <form name="edit-profile" class="popup__form">
       <fieldset class="popup__fieldset">
-        <input class="popup__input popup__input-username" maxlength="100" minlength="2" placeholder="Имя пользователя" required
+        <input class="popup__input popup__input-username" maxlength="100" minlength="2" placeholder="Имя пользователя"
+               required
                type="text">
         <input class="popup__input popup__input-job" minlength="2" maxlength="200" placeholder="О пользователе" required
                type="text">
@@ -90,6 +49,35 @@
     </form>
   </div>
 </div>
+
+<div class="popup popup-new-card">
+  <div class="popup__container">
+    <button class="popup__close-button" type="button"></button>
+    <h2 class="popup__title">Новое место</h2>
+    <form name="edit-profile" class="popup__form">
+      <fieldset class="popup__fieldset">
+        <input class="popup__input popup__input-name" maxlength="100" minlength="2" placeholder="Название"
+               required
+               type="text">
+        <input class="popup__input popup__input-link" minlength="7" placeholder="Ссылка на картинку" required
+               type="text">
+      </fieldset>
+      <button class="popup__submit" type="submit">Создать</button>
+    </form>
+  </div>
+</div>
+
+<template id="cardElementTemplate">
+  <li class="element">
+    <img src="" alt="" class="element__image">
+    <button class="element__trash" type="button" aria-label="Удалить"></button>
+    <div class="element__footer">
+      <h2 class="element__title"></h2>
+      <button class="heart element__heart" type="button" aria-label="Лайкнуть"></button>
+    </div>
+  </li>
+</template>
+
 <script src="./index.js"></script>
 </body>
 </html>
