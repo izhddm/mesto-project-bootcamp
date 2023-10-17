@@ -7,3 +7,6 @@
 /.idea/russian-travel-bootcamp.iml
 /.idea/vcs.xml
 /.idea/mesto-project-bootcamp.iml
+/node_modules/
+/dist/
+/.idea/

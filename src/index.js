@@ -1,3 +1,5 @@
+import './pages/index.css';
+
 /* Секция Profile */
 const profileBlock = document.querySelector('.profile');
 const profileInfoElement = profileBlock.querySelector('.profile__info');
