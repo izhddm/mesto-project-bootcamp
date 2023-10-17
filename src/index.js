@@ -20,8 +20,6 @@ import {validationSettings} from "./components/data";
 popups.forEach(element => element.addEventListener('mousedown', handlePopupClose))
 popupCloseButtons.forEach(button => button.addEventListener('click', handlePopupClose));
 
-document.addEventListener('keydown', handleEscKeyPress);
-
 newCardBtn.addEventListener('click', handleNewCardButtonClick);
 profileEditBtn.addEventListener('click', handleProfileEditBtnClick);
 

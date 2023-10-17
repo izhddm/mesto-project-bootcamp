@@ -47,11 +47,10 @@ export const handleProfileEditBtnClick = () => {
 
 export const handleEscKeyPress = (evt) => {
   if (evt.key === 'Escape') {
-    popups.forEach((popup) => {
-      if (popup.classList.contains('popup_opened')) {
-        closePopup(popup);
-      }
-    });
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
   }
 };
 
@@ -63,10 +62,12 @@ export const handlePopupClose = (evt) => {
 
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscKeyPress);
 }
 
 export function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscKeyPress);
 }
 
 export function initImagePopup(name, link) {
