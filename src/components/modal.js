@@ -45,6 +45,16 @@ export const handleProfileEditBtnClick = () => {
   openPopup(profileBlock);
 };
 
+export const handleEscKeyPress = (evt) => {
+  if (evt.key === 'Escape') {
+    popups.forEach((popup) => {
+      if (popup.classList.contains('popup_opened')) {
+        closePopup(popup);
+      }
+    });
+  }
+};
+
 export const handlePopupClose = (evt) => {
   const popup = evt.currentTarget.classList.contains("popup") ? evt.target : evt.target.closest('.popup');
   if (popup) closePopup(popup);
