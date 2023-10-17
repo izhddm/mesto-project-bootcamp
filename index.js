@@ -14,10 +14,13 @@ const popupProfileJob = popupProfileForm.querySelector('.popup__input-job');
 
 const popupNewCard = document.querySelector('.popup-new-card');
 const popupNewCardForm = popupNewCard.querySelector('.popup__form');
+const nameNewCardValue = popupNewCardForm.querySelector('.popup__input-name').value;
+const linkNewCardValue = popupNewCardForm.querySelector('.popup__input-link').value;
 
 const popupImage = document.querySelector('.popup-image');
 const popupImageImg = popupImage.querySelector('.popup__image');
 const popupImageCaption = popupImage.querySelector('.popup__image-caption');
+
 
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 
@@ -69,9 +72,7 @@ function closePopup(popup) {
 /* Навесим на все кнопки закрытия popup одинаковый функционал закрытия*/
 popupCloseButtons.forEach(button => {
   button.addEventListener('click', (evt) => {
-    const clickedButton = evt.currentTarget; // Элемент на котором произошел клик
-
-    const popupParent = clickedButton.closest('.popup'); // Ближайший родитель с классом .popup
+    const popupParent = evt.currentTarget.closest('.popup'); // Ближайший родитель с классом .popup
 
     if (popupParent) closePopup(popupParent);
   })
@@ -90,13 +91,10 @@ profileEditBtnElement.addEventListener('click', () => {
 popupProfileForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  profileTitleElement.textContent = evt.target.querySelector('.popup__input-username').value;
-  profileJobElement.textContent = evt.target.querySelector('.popup__input-job').value;
+  profileTitleElement.textContent = popupProfileUsername.value;
+  profileJobElement.textContent = popupProfileJob.value;
 
-  // Закроем форму
-  const popupParent = evt.currentTarget.closest('.popup'); // Ближайший родитель с классом .popup
-
-  closePopup(popupParent);
+  closePopup(popupProfile);
 });
 
 /*
@@ -165,15 +163,8 @@ cardAddBtn.addEventListener('click', () => {
 popupNewCardForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  const name = evt.target.querySelector('.popup__input-name').value;
-  const link = evt.target.querySelector('.popup__input-link').value;
+  cardsElement.prepend(createCard(nameNewCardValue, linkNewCardValue));
 
-
-  cardsElement.prepend(createCard(name, link));
-
-  // Закроем форму
-  const popupParent = evt.currentTarget.closest('.popup'); // Ближайший родитель с классом .popup
-
-  closePopup(popupParent);
+  closePopup(popupNewCard);
 });
 
