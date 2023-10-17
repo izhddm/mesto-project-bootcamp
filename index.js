@@ -69,6 +69,10 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
+function resetForm(form) {
+  form.reset();
+}
+
 /* Навесим на все кнопки закрытия popup одинаковый функционал закрытия*/
 popupCloseButtons.forEach(button => {
   button.addEventListener('click', (evt) => {
@@ -166,5 +170,6 @@ popupNewCardForm.addEventListener('submit', (evt) => {
   cardsElement.prepend(createCard(nameNewCardValue, linkNewCardValue));
 
   closePopup(popupNewCard);
+  resetForm(popupNewCardForm);
 });
 
