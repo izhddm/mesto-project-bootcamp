@@ -21,8 +21,12 @@
   transition: background 0.3s ease;
 }
 
+.popup__submit:disabled {
+  background: rgba(0, 0, 0, .8);
+}
+
 .popup__submit:hover {
-  background: rgba(0, 0, 0, 0.80);
+  background: rgba(0, 0, 0, .8);
 }
 
 @media screen and (max-width: 424px) {

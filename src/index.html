@@ -44,13 +44,19 @@
   <div class="popup__container">
     <button class="popup__close-button" type="button"></button>
     <h2 class="popup__title">Редактировать профиль</h2>
-    <form name="edit-profile" class="popup__form">
+    <form name="edit-profile" class="popup__form" novalidate>
       <fieldset class="popup__fieldset">
-        <input class="popup__input popup__input-username" maxlength="100" minlength="2" placeholder="Имя пользователя"
+        <input id="username" class="popup__input popup__input-username" minlength="4" maxlength="40"
+               placeholder="Имя пользователя"
                required
-               type="text">
-        <input class="popup__input popup__input-job" minlength="2" maxlength="200" placeholder="О пользователе" required
-               type="text">
+               type="text"
+               autocomplete="off">
+        <span id="error-username" class="popup__error"></span>
+        <input id="job" class="popup__input popup__input-job" minlength="2" maxlength="200" placeholder="О пользователе"
+               required
+               type="text"
+               autocomplete="off">
+        <span id="error-job" class="popup__error"></span>
       </fieldset>
       <button class="popup__submit" type="submit">Сохранить</button>
     </form>
@@ -61,13 +67,17 @@
   <div class="popup__container">
     <button class="popup__close-button" type="button"></button>
     <h2 class="popup__title">Новое место</h2>
-    <form name="edit-profile" class="popup__form">
+    <form name="edit-profile" class="popup__form" novalidate>
       <fieldset class="popup__fieldset">
-        <input class="popup__input popup__input-name" maxlength="100" minlength="2" placeholder="Название"
+        <input id="place" class="popup__input popup__input-name" maxlength="30" minlength="2" placeholder="Название"
                required
-               type="text">
-        <input  class="popup__input popup__input-link" minlength="7" placeholder="Ссылка на картинку" required
-               type="url">
+               type="text" autocomplete="off">
+        <span id="error-place" class="popup__error"></span>
+
+        <input id="url" class="popup__input popup__input-link" minlength="7" placeholder="Ссылка на картинку" required
+               type="url" autocomplete="off">
+        <span id="error-url" class="popup__error"></span>
+
       </fieldset>
       <button class="popup__submit" type="submit">Создать</button>
     </form>

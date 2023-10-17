@@ -16,6 +16,18 @@
   line-height: normal;
 }
 
+.popup__input:focus{
+  outline: none;
+}
+
+.popup__input::placeholder {
+  color: #C4C4C4;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .popup__input:first-of-type {
   margin-top: 0;
 }
