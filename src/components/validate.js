@@ -1,3 +1,4 @@
+// Управляем доступностью кнопки
 function enableSubmit(button) {
   button.disabled = false;
 }
@@ -6,7 +7,7 @@ function disableSubmit(button) {
   button.disabled = true;
 }
 
-//функция показывает ошибку в поле ввода
+//Скрываем ошибку
 function showError(inputField, errorMessage, errorInputClass, errorSpanClass) {
   inputField.classList.add(errorInputClass);
   const spanId = "error-" + inputField.id;
@@ -15,7 +16,7 @@ function showError(inputField, errorMessage, errorInputClass, errorSpanClass) {
   errorElement.textContent = errorMessage;
 }
 
-//функция прячет ошибку в поле ввода
+//Отображаем ошибку
 function hideError(inputField, errorInputClass, errorSpanClass) {
   inputField.classList.remove(errorInputClass);
 
@@ -25,39 +26,35 @@ function hideError(inputField, errorInputClass, errorSpanClass) {
   errorElement.textContent = "";
 }
 
-//функция валидации формы
+//Валидируем форму
 function validateForm(inputField, settings) {
-  if (inputField.validity.valid) {
-    hideError(inputField, settings.inputErrorClass, settings.errorClass);
-  } else {
-    showError(
-      inputField,
-      inputField.validationMessage,
-      settings.inputErrorClass,
-      settings.errorClass
-    );
-  }
+  inputField.validity.valid
+    ? hideError(inputField, settings.inputErrorClass, settings.errorClass)
+    : showError(inputField, inputField.validationMessage, settings.inputErrorClass, settings.errorClass);
 }
 
 function checkForm(form, button) {
-  if (form.checkValidity()) {
-    enableSubmit(button);
-  } else {
-    disableSubmit(button);
-  }
+  form.checkValidity() ? enableSubmit(button) : disableSubmit(button);
 }
 
 export function enableValidation(settings) {
   const forms = document.querySelectorAll(settings.formSelector);
-  forms.forEach((form) => {
-    const submitButton = form.querySelector(settings.submitButtonSelector);
-    const inputFields = form.querySelectorAll(settings.inputSelector);
-    checkForm(form, submitButton);
-    inputFields.forEach((item) => {
-      item.addEventListener("input", () => {
-        checkForm(form, submitButton);
-        validateForm(item, settings);
-      });
+
+  forms.forEach(form => {
+    const { submitButtonSelector, inputSelector } = settings;
+    const submitButton = form.querySelector(submitButtonSelector);
+    const inputFields = form.querySelectorAll(inputSelector);
+
+    const handleInput = item => {
+      checkForm(form, submitButton);
+      validateForm(item, settings);
+    };
+
+    inputFields.forEach(item => {
+      item.addEventListener("input", () => handleInput(item));
     });
+
+    checkForm(form, submitButton);
   });
 }
+
