@@ -119,7 +119,7 @@ function initImagePopup(name, link) {
   openPopup(popupImage);
 }
 
-function createCardElement(name, link) {
+function createCard(name, link) {
   const cardElement = cardElementTemplate.cloneNode(true);
 
   // Запишем нужные данные в карточку
@@ -149,13 +149,12 @@ function createCardElement(name, link) {
     deleteCardElement(cardsElement);
   })
 
-
-  cardsElement.prepend(cardElement);
+  return cardElement;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   initialCards.forEach(item => {
-    createCardElement(item.name, item.link);
+    cardsElement.prepend(createCard(item.name, item.link));
   });
 });
 
@@ -169,7 +168,8 @@ popupNewCardForm.addEventListener('submit', (evt) => {
   const name = evt.target.querySelector('.popup__input-name').value;
   const link = evt.target.querySelector('.popup__input-link').value;
 
-  createCardElement(name, link);
+
+  cardsElement.prepend(createCard(name, link));
 
   // Закроем форму
   const popupParent = evt.currentTarget.closest('.popup'); // Ближайший родитель с классом .popup
