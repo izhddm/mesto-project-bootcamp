@@ -41,7 +41,7 @@ export function enableValidation(settings) {
   const forms = document.querySelectorAll(settings.formSelector);
 
   forms.forEach(form => {
-    const { submitButtonSelector, inputSelector } = settings;
+    const {submitButtonSelector, inputSelector} = settings;
     const submitButton = form.querySelector(submitButtonSelector);
     const inputFields = form.querySelectorAll(inputSelector);
 
@@ -55,6 +55,11 @@ export function enableValidation(settings) {
     });
 
     checkForm(form, submitButton);
+
+    // Отключим кнопку сохранить
+    form.addEventListener('reset', () => {
+      disableSubmit(submitButton);
+    })
   });
 }
 
