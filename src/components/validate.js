@@ -10,7 +10,7 @@ function disableSubmit(button) {
 //Скрываем ошибку
 function showError(inputField, errorMessage, errorInputClass, errorSpanClass) {
   inputField.classList.add(errorInputClass);
-  const spanId = "error-" + inputField.id;
+  const spanId = "error-" + inputField.name;
   const errorElement = document.getElementById(spanId);
   errorElement.classList.add(errorSpanClass);
   errorElement.textContent = errorMessage;
@@ -20,7 +20,7 @@ function showError(inputField, errorMessage, errorInputClass, errorSpanClass) {
 function hideError(inputField, errorInputClass, errorSpanClass) {
   inputField.classList.remove(errorInputClass);
 
-  const spanId = "error-" + inputField.id;
+  const spanId = "error-" + inputField.name;
   const errorElement = document.getElementById(spanId);
   errorElement.classList.remove(errorSpanClass);
   errorElement.textContent = "";

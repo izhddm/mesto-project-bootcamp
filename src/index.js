@@ -5,20 +5,20 @@ import {
   profileForm,
   profileEditBtn,
   popups,
-  popupCloseButtons,
   newCardForm,
   handleNewCardButtonClick,
   handlePopupNewCardFormSubmit,
   handlePopupProfileFormSubmit,
   handleProfileEditBtnClick,
-  handlePopupClose, handleEscKeyPress,
+  handleClosePopup,
 } from "./components/modal";
 import {enableValidation} from "./components/validate";
 import {validationSettings} from "./components/data";
 
 
-popups.forEach(element => element.addEventListener('mousedown', handlePopupClose))
-popupCloseButtons.forEach(button => button.addEventListener('click', handlePopupClose));
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', handleClosePopup.bind(null, popup))
+})
 
 newCardBtn.addEventListener('click', handleNewCardButtonClick);
 profileEditBtn.addEventListener('click', handleProfileEditBtnClick);

@@ -1,51 +1,47 @@
 import {addCard, createCard} from "./card";
 
-const profileBlock = document.querySelector('.popup-profile');
-export const profileForm = profileBlock.querySelector('.popup__form');
-const popupProfileUsername = profileForm.querySelector('.popup__input-username');
-const popupProfileJob = profileForm.querySelector('.popup__input-job');
+const profilePopup = document.querySelector('.popup-profile');
+const newCardPopup = document.querySelector('.popup-new-card');
 
-const element = document.querySelector('.popup-new-card');
-export const newCardForm = element.querySelector('.popup__form');
-const nameNewCard = newCardForm.querySelector('.popup__input-name');
-const linkNewCard = newCardForm.querySelector('.popup__input-link');
+const profileForm = document.forms['edit-profile'];
+const newCardForm = document.forms['edit-card'];
 
-const popupImage = document.querySelector('.popup-image');
-const popupImageImg = popupImage.querySelector('.popup__image');
-const popupImageCaption = popupImage.querySelector('.popup__image-caption');
+const imagePopup = document.querySelector('.popup-image');
+const pictureImageFile = imagePopup.querySelector('.popup__image');
+const captionImagePopup = imagePopup.querySelector('.popup__image-caption');
 
-const profileInfo = document.querySelector('.profile > .profile__info');
+const profileSection = document.querySelector('.profile');
+const profileInfo = profileSection.querySelector('.profile__info');
 const profileCaption = profileInfo.querySelector('.profile__caption');
 const profileTitle = profileCaption.querySelector('.profile__title');
 const profileJob = profileInfo.querySelector('.profile__job');
-export const profileEditBtn = profileCaption.querySelector('.profile__edit-button');
+const profileEditBtn = profileCaption.querySelector('.profile__edit-button');
 
-export const popups = document.querySelectorAll('.popup');
-export const popupCloseButtons = document.querySelectorAll('.popup__close-button');
+const popups = document.querySelectorAll('.popup');
 
-export const handleNewCardButtonClick = () => openPopup(element);
+const handleNewCardButtonClick = () => openPopup(newCardPopup);
 
-export const handlePopupNewCardFormSubmit = (evt) => {
+const handlePopupNewCardFormSubmit = (evt) => {
   evt.preventDefault();
-  addCard(createCard(nameNewCard.value, linkNewCard.value));
-  closePopup(element);
+  addCard(createCard(newCardForm.place.value, newCardForm.url.value));
+  closePopup(newCardPopup);
   resetForm(newCardForm);
 };
 
-export const handlePopupProfileFormSubmit = (evt) => {
+const handlePopupProfileFormSubmit = (evt) => {
   evt.preventDefault();
-  profileTitle.textContent = popupProfileUsername.value;
-  profileJob.textContent = popupProfileJob.value;
-  closePopup(profileBlock);
+  profileTitle.textContent = profileForm.username.value;
+  profileJob.textContent = profileForm.job.value;
+  closePopup(profilePopup);
 };
 
-export const handleProfileEditBtnClick = () => {
-  popupProfileUsername.value = profileTitle.textContent;
-  popupProfileJob.value = profileJob.textContent;
-  openPopup(profileBlock);
+const handleProfileEditBtnClick = () => {
+  profileForm.username.value = profileTitle.textContent;
+  profileForm.job.value = profileJob.textContent;
+  openPopup(profilePopup);
 };
 
-export const handleEscKeyPress = (evt) => {
+const handleEscKeyPress = (evt) => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     if (openedPopup) {
@@ -54,29 +50,45 @@ export const handleEscKeyPress = (evt) => {
   }
 };
 
-export const handlePopupClose = (evt) => {
-  const popup = evt.currentTarget.classList.contains("popup") ? evt.target : evt.target.closest('.popup');
-  if (popup) closePopup(popup);
+const handleClosePopup = (popup, evt) => {
+  if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(popup);
+  }
 };
 
-
-export function openPopup(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscKeyPress);
 }
 
-export function closePopup(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscKeyPress);
 }
 
-export function initImagePopup(name, link) {
-  popupImageImg.src = link;
-  popupImageImg.alt = name;
-  popupImageCaption.textContent = name;
-  openPopup(popupImage);
+function initImagePopup(name, link) {
+  pictureImageFile.src = link;
+  pictureImageFile.alt = name;
+  captionImagePopup.textContent = name;
+  openPopup(imagePopup);
 }
 
 function resetForm(form) {
   form.reset();
 }
+
+export {
+  profileForm,
+  newCardForm,
+  profileEditBtn,
+  popups,
+  handleNewCardButtonClick,
+  handlePopupNewCardFormSubmit,
+  handlePopupProfileFormSubmit,
+  handleProfileEditBtnClick,
+  handleEscKeyPress,
+  handleClosePopup,
+  openPopup,
+  initImagePopup
+}
+
