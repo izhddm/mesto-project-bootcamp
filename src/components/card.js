@@ -7,7 +7,7 @@ const contentTemplate = document.getElementById('cardElementTemplate').content;
 const cardsContainer = document.querySelector('.cards__elements');
 export const newCardBtn = document.querySelector('.profile__add-button');
 
-function likeHeart(element) {
+function likeCard(element) {
   element.classList.toggle('heart_active');
 }
 
@@ -17,7 +17,7 @@ function handleImageClick(evt) {
 }
 
 function handleHeartClick(evt) {
-  likeHeart(evt.target);
+  likeCard(evt.target);
 }
 
 function handleTrashClick(evt) {
