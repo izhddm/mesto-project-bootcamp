@@ -10,7 +10,7 @@ import {
   handleClosePopup,
 } from "./components/modal";
 import {enableValidation} from "./components/validate";
-import {initialCards, validationSettings} from "./components/data";
+import {validationSettings} from "./components/data";
 import {getCards, getMyInfo} from "./components/api";
 import {
   profileAvatar,
@@ -47,8 +47,6 @@ Promise.all([getMyInfo(), getCards()])
   ).catch(error => {
   console.error(error);
 })
-
-// initializeCards(); // Инициализация дефолтных карточек
 
 enableValidation(validationSettings);
 
