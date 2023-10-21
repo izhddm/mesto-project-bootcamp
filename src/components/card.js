@@ -1,14 +1,14 @@
 'use strict';
 
 import {initImagePopup} from "./modal";
-import {getCurrentUserId} from "./utils";
-import {delCard} from "./api";
+import {checkLiked, getCurrentUserId} from "./utils";
+import {delCard, likeCard, unlikeCard} from "./api";
 
 const contentTemplate = document.getElementById('cardElementTemplate').content;
 const cardsContainer = document.querySelector('.cards__elements');
 export const newCardBtn = document.querySelector('.profile__add-button');
 
-function likeCard(element) {
+function toggleLikeCard(element) {
   element.classList.toggle('heart_active');
 }
 
@@ -17,8 +17,17 @@ function handleImageClick(evt) {
   initImagePopup(image.alt, image.src);
 }
 
-function handleHeartClick(evt) {
-  likeCard(evt.target);
+async function handleHeartClick(cardId, evt) {
+  try {
+    const response = evt.target.classList.contains('heart_active')
+      ? await unlikeCard(cardId)
+      : await likeCard(cardId);
+
+    console.log(response);
+    toggleLikeCard(evt.target);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function handleTrashClick(cardId, evt) {
@@ -41,8 +50,12 @@ export function createCard(card) {
 
   cardTemplate.querySelector('.element__title').textContent = card.name;
 
-  const heartElement = cardTemplate.querySelector('.heart');
-  heartElement.addEventListener('click', handleHeartClick);
+  const likeBtn = cardTemplate.querySelector('.heart');
+  likeBtn.addEventListener('click', handleHeartClick.bind(null, card._id));
+
+  if (checkLiked(card.likes, getCurrentUserId())) {
+    toggleLikeCard(likeBtn)
+  }
 
   const trashBtn = cardTemplate.querySelector('.element__trash');
   if (getCurrentUserId() !== card.owner._id) {

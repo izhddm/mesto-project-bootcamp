@@ -19,5 +19,7 @@ function setCurrentUserId(id) {
   return currentUserId;
 }
 
+// Проверка что текущий юзер лайкнул карточку
+const checkLiked = (likes, userId) => likes.some((item) => item._id === userId);
 
-export {getCurrentUserId, setCurrentUserId, profileAvatar, profileTitle, profileJob, profileEditBtn}
+export {getCurrentUserId, setCurrentUserId, profileAvatar, profileTitle, profileJob, profileEditBtn, checkLiked}
