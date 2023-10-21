@@ -1,7 +1,6 @@
 'use strict';
 
 import { initImagePopup } from "./modal";
-import {initialCards} from "./data";
 
 const contentTemplate = document.getElementById('cardElementTemplate').content;
 const cardsContainer = document.querySelector('.cards__elements');
@@ -25,35 +24,29 @@ function handleTrashClick(evt) {
   deleteCard(cardsElement);
 }
 
-export function createCard(name, link) {
-  const card = contentTemplate.cloneNode(true);
+export function createCard(card) {
+  const cardTemplate = contentTemplate.cloneNode(true);
 
-  const img = card.querySelector('.element__image');
-  img.src = link;
-  img.alt = name;
+  const img = cardTemplate.querySelector('.element__image');
+  img.src = card.link;
+  img.alt = card.name;
   img.addEventListener('click', handleImageClick);
 
-  card.querySelector('.element__title').textContent = name;
+  cardTemplate.querySelector('.element__title').textContent = card.name;
 
-  const heartElement = card.querySelector('.heart');
+  const heartElement = cardTemplate.querySelector('.heart');
   heartElement.addEventListener('click', handleHeartClick);
 
-  const trashElement = card.querySelector('.element__trash');
+  const trashElement = cardTemplate.querySelector('.element__trash');
   trashElement.addEventListener('click', handleTrashClick);
 
-  return card;
+  return cardTemplate;
 }
 
-export function addCard(element) {
+export function addCardToContainer(element) {
   cardsContainer.prepend(element);
 }
 
 function deleteCard(element) {
   element.remove();
-}
-
-export function initializeCards() {
-  initialCards.forEach(item => {
-    addCard(createCard(item.name, item.link));
-  });
 }

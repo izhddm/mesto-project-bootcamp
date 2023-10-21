@@ -1,4 +1,5 @@
-import {addCard, createCard} from "./card";
+import {addCardToContainer, createCard} from "./card";
+import {profileJob, profileTitle} from "./utils";
 
 const profilePopup = document.querySelector('.popup-profile');
 const newCardPopup = document.querySelector('.popup-new-card');
@@ -10,12 +11,6 @@ const imagePopup = document.querySelector('.popup-image');
 const pictureImageFile = imagePopup.querySelector('.popup__image');
 const captionImagePopup = imagePopup.querySelector('.popup__image-caption');
 
-const profileSection = document.querySelector('.profile');
-const profileInfo = profileSection.querySelector('.profile__info');
-const profileCaption = profileInfo.querySelector('.profile__caption');
-const profileTitle = profileCaption.querySelector('.profile__title');
-const profileJob = profileInfo.querySelector('.profile__job');
-const profileEditBtn = profileCaption.querySelector('.profile__edit-button');
 
 const popups = document.querySelectorAll('.popup');
 
@@ -23,7 +18,7 @@ const handleNewCardButtonClick = () => openPopup(newCardPopup);
 
 const handlePopupNewCardFormSubmit = (evt) => {
   evt.preventDefault();
-  addCard(createCard(newCardForm.place.value, newCardForm.url.value));
+  addCardToContainer(createCard(newCardForm.place.value, newCardForm.url.value));
   closePopup(newCardPopup);
   resetForm(newCardForm);
 };
@@ -80,7 +75,6 @@ function resetForm(form) {
 export {
   profileForm,
   newCardForm,
-  profileEditBtn,
   popups,
   handleNewCardButtonClick,
   handlePopupNewCardFormSubmit,
