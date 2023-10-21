@@ -1,5 +1,6 @@
 import {addCardToContainer, createCard} from "./card";
 import {profileJob, profileTitle} from "./utils";
+import {addCard} from "./api";
 
 const profilePopup = document.querySelector('.popup-profile');
 const newCardPopup = document.querySelector('.popup-new-card');
@@ -18,9 +19,14 @@ const handleNewCardButtonClick = () => openPopup(newCardPopup);
 
 const handlePopupNewCardFormSubmit = (evt) => {
   evt.preventDefault();
-  addCardToContainer(createCard(newCardForm.place.value, newCardForm.url.value));
-  closePopup(newCardPopup);
-  resetForm(newCardForm);
+
+  addCard(newCardForm.place.value, newCardForm.url.value)
+    .then((card) => {
+      addCardToContainer(createCard(card));
+      closePopup(newCardPopup);
+      resetForm(newCardForm);
+    })
+    .catch((error) => console.error(error))
 };
 
 const handlePopupProfileFormSubmit = (evt) => {
