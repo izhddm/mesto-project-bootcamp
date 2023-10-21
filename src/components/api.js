@@ -44,6 +44,18 @@ function getCards() {
     .then(checkResponse)
 }
 
-export {getMyInfo, setMyInfo, getCards}
+function addCard(name, link) {
+  return fetch(`${config.baseUrl}/cards`, {
+    method: 'POST',
+    headers: config.headers,
+    body: JSON.stringify({
+      name: name,
+      link: link
+    })
+  })
+    .then(checkResponse)
+}
+
+export {getMyInfo, setMyInfo, getCards, addCard}
 
 
