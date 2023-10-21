@@ -13,7 +13,9 @@
   <main class="content page__content">
     <section class="profile" aria-label="Информация о профиле">
       <div class="profile__info">
-        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватарка" class="profile__avatar">
+        <div class="profile__avatar-container">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватарка" class="profile__avatar">
+        </div>
         <div class="profile__caption">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="profile__edit-button" type="button"></button>
@@ -52,7 +54,8 @@
                type="text"
                autocomplete="off">
         <span id="error-username" class="popup__error"></span>
-        <input name="job" class="popup__input popup__input-job" minlength="2" maxlength="200" placeholder="О пользователе"
+        <input name="job" class="popup__input popup__input-job" minlength="2" maxlength="200"
+               placeholder="О пользователе"
                required
                type="text"
                autocomplete="off">
