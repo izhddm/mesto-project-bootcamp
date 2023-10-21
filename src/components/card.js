@@ -1,6 +1,8 @@
 'use strict';
 
-import { initImagePopup } from "./modal";
+import {initImagePopup} from "./modal";
+import {getCurrentUserId} from "./utils";
+import {delCard} from "./api";
 
 const contentTemplate = document.getElementById('cardElementTemplate').content;
 const cardsContainer = document.querySelector('.cards__elements');
@@ -19,9 +21,14 @@ function handleHeartClick(evt) {
   likeCard(evt.target);
 }
 
-function handleTrashClick(evt) {
-  const cardsElement = evt.target.closest('.element');
-  deleteCard(cardsElement);
+function handleTrashClick(cardId, evt) {
+  delCard(cardId)
+    .then(() => {
+      const cardsElement = evt.target.closest('.element');
+
+      deleteCard(cardsElement);
+    })
+    .catch(error => console.error(error));
 }
 
 export function createCard(card) {
@@ -37,8 +44,12 @@ export function createCard(card) {
   const heartElement = cardTemplate.querySelector('.heart');
   heartElement.addEventListener('click', handleHeartClick);
 
-  const trashElement = cardTemplate.querySelector('.element__trash');
-  trashElement.addEventListener('click', handleTrashClick);
+  const trashBtn = cardTemplate.querySelector('.element__trash');
+  if (getCurrentUserId() !== card.owner._id) {
+    trashBtn.remove();
+  } else {
+    trashBtn.addEventListener('click', handleTrashClick.bind(null, card._id));
+  }
 
   return cardTemplate;
 }
