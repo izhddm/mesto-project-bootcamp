@@ -25,6 +25,18 @@ function getMyInfo() {
     .then(checkResponse)
 }
 
+function setMyInfo(name, about) {
+  return fetch(`${config.baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      name: name,
+      about: about
+    })
+  })
+    .then(checkResponse)
+}
+
 function getCards() {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers
@@ -32,6 +44,6 @@ function getCards() {
     .then(checkResponse)
 }
 
-export {getMyInfo, getCards}
+export {getMyInfo, setMyInfo, getCards}
 
 
