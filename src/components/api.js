@@ -6,4 +6,25 @@ const config = {
   }
 }
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+
+  return res.json().then(err => {
+    err.code = res.status;
+
+    return Promise.reject(err);
+  })
+}
+
+function getMyInfo() {
+  return fetch(`${config.baseUrl}/users/me`, {
+    headers: config.headers
+  })
+    .then(checkResponse)
+}
+
+export {getMyInfo}
+
 
