@@ -37,6 +37,17 @@ function setMyInfo(name, about) {
     .then(checkResponse)
 }
 
+function setMyAvatar(linkAvatar) {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: linkAvatar
+    })
+  })
+    .then(checkResponse)
+}
+
 function getCards() {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers
@@ -80,6 +91,6 @@ function unlikeCard(id) {
     .then(checkResponse)
 }
 
-export {getMyInfo, setMyInfo, getCards, addCard, delCard, likeCard, unlikeCard}
+export {getMyInfo, setMyInfo, setMyAvatar, getCards, addCard, delCard, likeCard, unlikeCard}
 
 
