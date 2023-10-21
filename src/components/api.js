@@ -64,6 +64,22 @@ function delCard(id) {
     .then(checkResponse)
 }
 
-export {getMyInfo, setMyInfo, getCards, addCard, delCard}
+function likeCard(id) {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: 'PUT',
+    headers: config.headers
+  })
+    .then(checkResponse)
+}
+
+function unlikeCard(id) {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: 'DELETE',
+    headers: config.headers
+  })
+    .then(checkResponse)
+}
+
+export {getMyInfo, setMyInfo, getCards, addCard, delCard, likeCard, unlikeCard}
 
 
