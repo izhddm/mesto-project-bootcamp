@@ -19,7 +19,27 @@ function setCurrentUserId(id) {
   return currentUserId;
 }
 
-// Проверка что текущий юзер лайкнул карточку
+// Проверка, что текущий юзер лайкнул карточку
 const checkLiked = (likes, userId) => likes.some((item) => item._id === userId);
 
-export {getCurrentUserId, setCurrentUserId, profileAvatar, profileTitle, profileJob, profileEditBtn, checkLiked}
+// Запись информации о пользователе приходящей с бэкенда
+const updateProfileInfo = (userInfo) => {
+  profileTitle.textContent = userInfo.name;
+  profileJob.textContent = userInfo.about;
+};
+
+const updateProfileAvatar = (myInfo) => {
+  profileAvatar.src = myInfo.avatar;
+}
+
+export {
+  getCurrentUserId,
+  setCurrentUserId,
+  profileAvatar,
+  profileTitle,
+  profileJob,
+  profileEditBtn,
+  checkLiked,
+  updateProfileInfo,
+  updateProfileAvatar
+}

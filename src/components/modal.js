@@ -1,6 +1,6 @@
 import {addCardToContainer, createCard} from "./card";
-import {profileJob, profileTitle} from "./utils";
-import {addCard} from "./api";
+import {profileJob, profileTitle, updateProfileInfo} from "./utils";
+import {addCard, setMyInfo} from "./api";
 
 const profilePopup = document.querySelector('.popup-profile');
 const newCardPopup = document.querySelector('.popup-new-card');
@@ -31,9 +31,13 @@ const handlePopupNewCardFormSubmit = (evt) => {
 
 const handlePopupProfileFormSubmit = (evt) => {
   evt.preventDefault();
-  profileTitle.textContent = profileForm.username.value;
-  profileJob.textContent = profileForm.job.value;
-  closePopup(profilePopup);
+
+  setMyInfo(profileForm.username.value, profileForm.job.value)
+    .then((myInfo) => {
+      updateProfileInfo(myInfo);
+      closePopup(profilePopup);
+    })
+    .catch((error) => console.error(error))
 };
 
 const handleProfileEditBtnClick = () => {

@@ -12,13 +12,7 @@ import {
 import {enableValidation} from "./components/validate";
 import {validationSettings} from "./components/data";
 import {getCards, getMyInfo} from "./components/api";
-import {
-  profileAvatar,
-  profileEditBtn,
-  profileJob,
-  profileTitle,
-  setCurrentUserId
-} from "./components/utils";
+import {profileEditBtn, setCurrentUserId, updateProfileAvatar, updateProfileInfo} from "./components/utils";
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', handleClosePopup.bind(null, popup))
@@ -33,11 +27,11 @@ newCardForm.addEventListener('submit', handlePopupNewCardFormSubmit);
 // Получим информацию о пользователе и карточки
 Promise.all([getMyInfo(), getCards()])
   .then(([myInfo, cards]) => {
-      // Информация о пользователе
-      profileAvatar.src = myInfo.avatar;
-      profileTitle.textContent = myInfo.name;
-      profileJob.textContent = myInfo.about;
       setCurrentUserId(myInfo._id);
+
+      // Информация о пользователе
+      updateProfileAvatar(myInfo);
+      updateProfileInfo(myInfo);
 
       // Карточки
       cards.reverse().forEach((card) => {
