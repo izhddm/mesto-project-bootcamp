@@ -56,6 +56,14 @@ function addCard(name, link) {
     .then(checkResponse)
 }
 
-export {getMyInfo, setMyInfo, getCards, addCard}
+function delCard(id) {
+  return fetch(`${config.baseUrl}/cards/${id}`, {
+    method: 'DELETE',
+    headers: config.headers
+  })
+    .then(checkResponse)
+}
+
+export {getMyInfo, setMyInfo, getCards, addCard, delCard}
 
 
