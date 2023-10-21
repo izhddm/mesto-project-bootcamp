@@ -25,6 +25,13 @@ function getMyInfo() {
     .then(checkResponse)
 }
 
-export {getMyInfo}
+function getCards() {
+  return fetch(`${config.baseUrl}/cards`, {
+    headers: config.headers
+  })
+    .then(checkResponse)
+}
+
+export {getMyInfo, getCards}
 
 
