@@ -60,12 +60,19 @@ const handlePopupProfileFormSubmit = (evt) => {
 const handlePopupProfileAvatarFormSubmit = (evt) => {
   evt.preventDefault();
 
+  profileAvatarForm.submit.textContent = 'Сохранить...';
+  disableSubmit(profileAvatarForm.submit);
+
   setMyAvatar(profileAvatarForm.avatar.value)
     .then((myInfo) => {
       updateProfileAvatar(myInfo);
       closePopup(profileAvatarPopup);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(()=>{
+      profileAvatarForm.submit.textContent = 'Сохранить';
+      enableSubmit(profileAvatarForm.submit);
+    });
 }
 
 const handleProfileEditBtnClick = () => {
