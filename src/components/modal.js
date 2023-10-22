@@ -1,5 +1,13 @@
 import {addCardToContainer, createCard} from "./card";
-import {profileAvatar, profileJob, profileTitle, updateProfileAvatar, updateProfileInfo} from "./utils";
+import {
+  disableSubmit,
+  enableSubmit,
+  profileAvatar,
+  profileJob,
+  profileTitle,
+  updateProfileAvatar,
+  updateProfileInfo
+} from "./utils";
 import {addCard, setMyAvatar, setMyInfo} from "./api";
 
 const profilePopup = document.querySelector('.popup-profile');
@@ -22,6 +30,9 @@ const handleNewCardButtonClick = () => openPopup(newCardPopup);
 const handlePopupNewCardFormSubmit = (evt) => {
   evt.preventDefault();
 
+  newCardForm.submit.textContent = 'Создать...';
+  disableSubmit(newCardForm.submit);
+
   addCard(newCardForm.place.value, newCardForm.url.value)
     .then((card) => {
       addCardToContainer(createCard(card));
@@ -29,6 +40,10 @@ const handlePopupNewCardFormSubmit = (evt) => {
       resetForm(newCardForm);
     })
     .catch((error) => console.error(error))
+    .finally(()=>{
+      newCardForm.submit.textContent = 'Создать';
+      enableSubmit(newCardForm.submit);
+    })
 };
 
 const handlePopupProfileFormSubmit = (evt) => {
