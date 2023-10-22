@@ -37,12 +37,14 @@ const handlePopupNewCardFormSubmit = (evt) => {
     .then((card) => {
       addCardToContainer(createCard(card));
       closePopup(newCardPopup);
-      resetForm(newCardForm);
+      newCardForm.reset();
     })
-    .catch((error) => console.error(error))
+    .catch((error) => {
+      enableSubmit(newCardForm.submit);
+      console.error(error);
+    })
     .finally(()=>{
       newCardForm.submit.textContent = 'Создать';
-      enableSubmit(newCardForm.submit);
     })
 };
 
@@ -57,10 +59,12 @@ const handlePopupProfileFormSubmit = (evt) => {
       updateProfileInfo(myInfo);
       closePopup(profilePopup);
     })
-    .catch((error) => console.error(error))
+    .catch((error) => {
+      enableSubmit(profileForm.submit);
+      console.error(error);
+    })
     .finally(()=>{
       profileForm.submit.textContent = 'Сохранить';
-      enableSubmit(profileForm.submit);
     });
 };
 
@@ -89,7 +93,7 @@ const handleProfileEditBtnClick = () => {
 };
 
 const handleProfileAvatarEditBtnClick = () => {
-  profileAvatarForm.avatar.value = profileAvatar.src;
+  profileAvatarForm.reset();
   openPopup(profileAvatarPopup);
 };
 
@@ -123,10 +127,6 @@ function initImagePopup(name, link) {
   pictureImageFile.alt = name;
   captionImagePopup.textContent = name;
   openPopup(imagePopup);
-}
-
-function resetForm(form) {
-  form.reset();
 }
 
 export {
