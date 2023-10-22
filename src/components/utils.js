@@ -33,15 +33,6 @@ const updateProfileAvatar = (myInfo) => {
   profileAvatar.src = myInfo.avatar;
 }
 
-// Управляем доступностью кнопки
-function enableSubmit(button) {
-  button.disabled = false;
-}
-
-function disableSubmit(button) {
-  button.disabled = true;
-}
-
 export {
   getCurrentUserId,
   setCurrentUserId,
@@ -53,6 +44,4 @@ export {
   checkLiked,
   updateProfileInfo,
   updateProfileAvatar,
-  enableSubmit,
-  disableSubmit,
 }

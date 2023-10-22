@@ -1,7 +1,5 @@
 import {addCardToContainer, createCard} from "./card";
 import {
-  disableSubmit,
-  enableSubmit,
   profileAvatar,
   profileJob,
   profileTitle,
@@ -9,6 +7,7 @@ import {
   updateProfileInfo
 } from "./utils";
 import {addCard, setMyAvatar, setMyInfo} from "./api";
+import {disableSubmit, enableSubmit} from "./validate";
 
 const profilePopup = document.querySelector('.popup-profile');
 const profileAvatarPopup = document.querySelector('.popup-avatar');

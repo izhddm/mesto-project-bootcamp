@@ -1,5 +1,11 @@
-//Скрываем ошибку
-import {disableSubmit, enableSubmit} from "./utils";
+// Управляем доступностью кнопки
+function enableSubmit(button) {
+  button.disabled = false;
+}
+
+function disableSubmit(button) {
+  button.disabled = true;
+}
 
 function showError(inputField, errorMessage, errorInputClass, errorSpanClass) {
   inputField.classList.add(errorInputClass);
@@ -55,4 +61,6 @@ export function enableValidation(settings) {
     })
   });
 }
+
+export {enableSubmit, disableSubmit}
 
