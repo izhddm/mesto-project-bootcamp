@@ -42,7 +42,7 @@ const handlePopupNewCardFormSubmit = (evt) => {
       enableSubmit(newCardForm.submit);
       console.error(error);
     })
-    .finally(()=>{
+    .finally(() => {
       newCardForm.submit.textContent = 'Создать';
     })
 };
@@ -62,7 +62,7 @@ const handlePopupProfileFormSubmit = (evt) => {
       enableSubmit(profileForm.submit);
       console.error(error);
     })
-    .finally(()=>{
+    .finally(() => {
       profileForm.submit.textContent = 'Сохранить';
     });
 };
@@ -79,7 +79,7 @@ const handlePopupProfileAvatarFormSubmit = (evt) => {
       closePopup(profileAvatarPopup);
     })
     .catch((error) => console.error(error))
-    .finally(()=>{
+    .finally(() => {
       profileAvatarForm.submit.textContent = 'Сохранить';
       enableSubmit(profileAvatarForm.submit);
     });
@@ -99,9 +99,8 @@ const handleProfileAvatarEditBtnClick = () => {
 const handleEscKeyPress = (evt) => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
+
+    closePopup(openedPopup);
   }
 };
 
