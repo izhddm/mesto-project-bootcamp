@@ -1,5 +1,3 @@
-'use strict';
-
 import {initImagePopup} from "./modal";
 import {checkLiked, getCurrentUserId} from "./utils";
 import {delCard, likeCard, unlikeCard} from "./api";
@@ -16,18 +14,13 @@ function setLikeCount(element, count){
   element.textContent = count;
 }
 
-function handleImageClick(evt) {
-  const image = evt.target;
-  initImagePopup(image.alt, image.src);
-}
-
-async function handleHeartClick(counterElement, cardId, evt) {
+async function handleHeartClick(counterElement, cardId) {
   try {
-    const response = evt.target.classList.contains('heart_active')
+    const response = this.classList.contains('heart_active')
       ? await unlikeCard(cardId)
       : await likeCard(cardId);
 
-    toggleLikeCard(evt.target);
+    toggleLikeCard(this);
 
     // Запишем кол-во лайков
     setLikeCount(counterElement, response.likes.length)
@@ -53,14 +46,14 @@ export function createCard(card) {
   const img = cardTemplate.querySelector('.element__image');
   img.src = card.link;
   img.alt = card.name;
-  img.addEventListener('click', handleImageClick);
+  img.addEventListener('click', initImagePopup.bind(null, card.name, card.link));
 
   cardTemplate.querySelector('.element__title').textContent = card.name;
 
   // Кнопка лайка
   const likeBtn = cardTemplate.querySelector('.heart__element');
   const likeCounter = cardTemplate.querySelector('.heart__counter');
-  likeBtn.addEventListener('click', handleHeartClick.bind(null, likeCounter, card._id));
+  likeBtn.addEventListener('click', handleHeartClick.bind(likeBtn, likeCounter, card._id));
 
   if (checkLiked(card.likes, getCurrentUserId())) {
     toggleLikeCard(likeBtn);
