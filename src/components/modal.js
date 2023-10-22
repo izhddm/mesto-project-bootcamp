@@ -30,7 +30,7 @@ const handleNewCardButtonClick = () => openPopup(newCardPopup);
 const handlePopupNewCardFormSubmit = (evt) => {
   evt.preventDefault();
 
-  newCardForm.submit.textContent = 'Создать...';
+  newCardForm.submit.textContent = 'Сохранение...';
   disableSubmit(newCardForm.submit);
 
   addCard(newCardForm.place.value, newCardForm.url.value)
