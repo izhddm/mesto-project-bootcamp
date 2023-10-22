@@ -1,9 +1,12 @@
 import {initImagePopup} from "./modal";
-import {checkLiked, getCurrentUserId} from "./utils";
+import {getCurrentUserId} from "./utils";
 import {delCard, likeCard, unlikeCard} from "./api";
 
 const contentTemplate = document.getElementById('cardElementTemplate').content;
 export const newCardBtn = document.querySelector('.profile__add-button');
+
+// Проверка, что текущий юзер лайкнул карточку
+const checkLiked = (likes, userId) => likes.some((item) => item._id === userId);
 
 function toggleLikeCard(element) {
   element.classList.toggle('heart_active');

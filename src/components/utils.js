@@ -23,9 +23,6 @@ function setCurrentUserId(id) {
   return currentUserId;
 }
 
-// Проверка, что текущий юзер лайкнул карточку
-const checkLiked = (likes, userId) => likes.some((item) => item._id === userId);
-
 // Запись информации о пользователе приходящей с бэкенда
 const updateProfileInfo = (userInfo) => {
   profileTitle.textContent = userInfo.name;
@@ -48,7 +45,6 @@ export {
   profileTitle,
   profileJob,
   profileEditBtn,
-  checkLiked,
   updateProfileInfo,
   updateProfileAvatar,
   addCardToContainer
