@@ -1,7 +1,6 @@
 import {createCard} from "./card";
 import {
   addCardToContainer,
-  profileAvatar,
   profileJob,
   profileTitle,
   updateProfileAvatar,

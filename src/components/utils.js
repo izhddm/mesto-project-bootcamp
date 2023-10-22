@@ -45,7 +45,6 @@ export {
   getCurrentUserId,
   setCurrentUserId,
   profileAvatarBtn,
-  profileAvatar,
   profileTitle,
   profileJob,
   profileEditBtn,
