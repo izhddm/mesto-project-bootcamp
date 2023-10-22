@@ -1,11 +1,13 @@
 import {addCardToContainer, createCard} from "./card";
-import {profileJob, profileTitle, updateProfileInfo} from "./utils";
-import {addCard, setMyInfo} from "./api";
+import {profileAvatar, profileJob, profileTitle, updateProfileAvatar, updateProfileInfo} from "./utils";
+import {addCard, setMyAvatar, setMyInfo} from "./api";
 
 const profilePopup = document.querySelector('.popup-profile');
+const profileAvatarPopup = document.querySelector('.popup-avatar');
 const newCardPopup = document.querySelector('.popup-new-card');
 
 const profileForm = document.forms['edit-profile'];
+const profileAvatarForm = document.forms['edit-avatar'];
 const newCardForm = document.forms['edit-card'];
 
 const imagePopup = document.querySelector('.popup-image');
@@ -40,10 +42,26 @@ const handlePopupProfileFormSubmit = (evt) => {
     .catch((error) => console.error(error))
 };
 
+const handlePopupProfileAvatarFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  setMyAvatar(profileAvatarForm.avatar.value)
+    .then((myInfo) => {
+      updateProfileAvatar(myInfo);
+      closePopup(profileAvatarPopup);
+    })
+    .catch((error) => console.error(error));
+}
+
 const handleProfileEditBtnClick = () => {
   profileForm.username.value = profileTitle.textContent;
   profileForm.job.value = profileJob.textContent;
   openPopup(profilePopup);
+};
+
+const handleProfileAvatarEditBtnClick = () => {
+  profileAvatarForm.avatar.value = profileAvatar.src;
+  openPopup(profileAvatarPopup);
 };
 
 const handleEscKeyPress = (evt) => {
@@ -84,11 +102,15 @@ function resetForm(form) {
 
 export {
   profileForm,
+  profileAvatarPopup,
+  profileAvatarForm,
   newCardForm,
   popups,
   handleNewCardButtonClick,
+  handleProfileAvatarEditBtnClick,
   handlePopupNewCardFormSubmit,
   handlePopupProfileFormSubmit,
+  handlePopupProfileAvatarFormSubmit,
   handleProfileEditBtnClick,
   handleEscKeyPress,
   handleClosePopup,

@@ -5,6 +5,7 @@ const profileCaption = profileInfo.querySelector('.profile__caption');
 const profileTitle = profileCaption.querySelector('.profile__title');
 const profileJob = profileInfo.querySelector('.profile__job');
 const profileEditBtn = profileCaption.querySelector('.profile__edit-button');
+const profileAvatarBtn = profileInfo.querySelector('.profile__avatar-container');
 
 // Id текущего пользователя
 let currentUserId = undefined;
@@ -35,6 +36,7 @@ const updateProfileAvatar = (myInfo) => {
 export {
   getCurrentUserId,
   setCurrentUserId,
+  profileAvatarBtn,
   profileAvatar,
   profileTitle,
   profileJob,

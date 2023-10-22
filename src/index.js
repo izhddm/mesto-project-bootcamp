@@ -7,12 +7,18 @@ import {
   handlePopupNewCardFormSubmit,
   handlePopupProfileFormSubmit,
   handleProfileEditBtnClick,
-  handleClosePopup,
+  handleClosePopup, profileAvatarForm, handlePopupProfileAvatarFormSubmit, handleProfileAvatarEditBtnClick,
 } from "./components/modal";
 import {enableValidation} from "./components/validate";
 import {validationSettings} from "./components/data";
 import {getCards, getMyInfo} from "./components/api";
-import {profileEditBtn, setCurrentUserId, updateProfileAvatar, updateProfileInfo} from "./components/utils";
+import {
+  profileAvatarBtn,
+  profileEditBtn,
+  setCurrentUserId,
+  updateProfileAvatar,
+  updateProfileInfo
+} from "./components/utils";
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', handleClosePopup.bind(null, popup))
@@ -20,8 +26,10 @@ popups.forEach((popup) => {
 
 newCardBtn.addEventListener('click', handleNewCardButtonClick);
 profileEditBtn.addEventListener('click', handleProfileEditBtnClick);
+profileAvatarBtn.addEventListener('click', handleProfileAvatarEditBtnClick)
 
 profileForm.addEventListener('submit', handlePopupProfileFormSubmit);
+profileAvatarForm.addEventListener('submit', handlePopupProfileAvatarFormSubmit)
 newCardForm.addEventListener('submit', handlePopupNewCardFormSubmit);
 
 // Получим информацию о пользователе и карточки
