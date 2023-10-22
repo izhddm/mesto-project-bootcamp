@@ -24,6 +24,8 @@
 @import "../blocks/profile/__edit-button/profile__edit-button.css";
 
 @import "../blocks/heart/heart.css";
+@import "../blocks/heart/__element/heart__element.css";
+@import "../blocks/heart/__counter/heart__counter.css";
 @import "../blocks/heart/_active/heart_active.css";
 
 @import "../blocks/cards/cards.css";

@@ -12,19 +12,26 @@ function toggleLikeCard(element) {
   element.classList.toggle('heart_active');
 }
 
+function setLikeCount(element, count){
+  element.textContent = count;
+}
+
 function handleImageClick(evt) {
   const image = evt.target;
   initImagePopup(image.alt, image.src);
 }
 
-async function handleHeartClick(cardId, evt) {
+async function handleHeartClick(counterElement, cardId, evt) {
   try {
     const response = evt.target.classList.contains('heart_active')
       ? await unlikeCard(cardId)
       : await likeCard(cardId);
 
-    console.log(response);
     toggleLikeCard(evt.target);
+
+    // Запишем кол-во лайков
+    setLikeCount(counterElement, response.likes.length)
+
   } catch (error) {
     console.error(error);
   }
@@ -50,13 +57,17 @@ export function createCard(card) {
 
   cardTemplate.querySelector('.element__title').textContent = card.name;
 
-  const likeBtn = cardTemplate.querySelector('.heart');
-  likeBtn.addEventListener('click', handleHeartClick.bind(null, card._id));
+  // Кнопка лайка
+  const likeBtn = cardTemplate.querySelector('.heart__element');
+  const likeCounter = cardTemplate.querySelector('.heart__counter');
+  likeBtn.addEventListener('click', handleHeartClick.bind(null, likeCounter, card._id));
 
   if (checkLiked(card.likes, getCurrentUserId())) {
-    toggleLikeCard(likeBtn)
+    toggleLikeCard(likeBtn);
   }
+  setLikeCount(likeCounter, card.likes.length);
 
+  // Кнопка корзины
   const trashBtn = cardTemplate.querySelector('.element__trash');
   if (getCurrentUserId() !== card.owner._id) {
     trashBtn.remove();
