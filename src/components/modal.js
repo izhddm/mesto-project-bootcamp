@@ -49,12 +49,19 @@ const handlePopupNewCardFormSubmit = (evt) => {
 const handlePopupProfileFormSubmit = (evt) => {
   evt.preventDefault();
 
+  profileForm.submit.textContent = 'Сохранить...';
+  disableSubmit(profileForm.submit);
+
   setMyInfo(profileForm.username.value, profileForm.job.value)
     .then((myInfo) => {
       updateProfileInfo(myInfo);
       closePopup(profilePopup);
     })
     .catch((error) => console.error(error))
+    .finally(()=>{
+      profileForm.submit.textContent = 'Сохранить';
+      enableSubmit(profileForm.submit);
+    });
 };
 
 const handlePopupProfileAvatarFormSubmit = (evt) => {
