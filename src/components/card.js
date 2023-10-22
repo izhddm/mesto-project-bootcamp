@@ -3,7 +3,6 @@ import {checkLiked, getCurrentUserId} from "./utils";
 import {delCard, likeCard, unlikeCard} from "./api";
 
 const contentTemplate = document.getElementById('cardElementTemplate').content;
-const cardsContainer = document.querySelector('.cards__elements');
 export const newCardBtn = document.querySelector('.profile__add-button');
 
 function toggleLikeCard(element) {
@@ -71,6 +70,4 @@ export function createCard(card) {
   return cardTemplate;
 }
 
-export function addCardToContainer(element) {
-  cardsContainer.prepend(element);
-}
+

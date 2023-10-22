@@ -1,6 +1,6 @@
 import './pages/index.css';
 
-import {addCardToContainer, createCard, newCardBtn} from "./components/card";
+import {createCard, newCardBtn} from "./components/card";
 import {
   profileForm, popups, newCardForm,
   handleNewCardButtonClick,
@@ -13,6 +13,7 @@ import {enableValidation} from "./components/validate";
 import {validationSettings} from "./components/data";
 import {getCards, getMyInfo} from "./components/api";
 import {
+  addCardToContainer,
   profileAvatarBtn,
   profileEditBtn,
   setCurrentUserId,

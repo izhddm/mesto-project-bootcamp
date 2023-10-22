@@ -1,5 +1,6 @@
-import {addCardToContainer, createCard} from "./card";
+import {createCard} from "./card";
 import {
+  addCardToContainer,
   profileAvatar,
   profileJob,
   profileTitle,

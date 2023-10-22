@@ -7,6 +7,9 @@ const profileJob = profileInfo.querySelector('.profile__job');
 const profileEditBtn = profileCaption.querySelector('.profile__edit-button');
 const profileAvatarBtn = profileInfo.querySelector('.profile__avatar-container');
 
+// Контейнер со всеми карточками
+const cardsContainer = document.querySelector('.cards__elements');
+
 // Id текущего пользователя
 let currentUserId = undefined;
 
@@ -33,6 +36,11 @@ const updateProfileAvatar = (myInfo) => {
   profileAvatar.src = myInfo.avatar;
 }
 
+// Добавление карточки в контейнер
+function addCardToContainer(element) {
+  cardsContainer.prepend(element);
+}
+
 export {
   getCurrentUserId,
   setCurrentUserId,
@@ -44,4 +52,5 @@ export {
   checkLiked,
   updateProfileInfo,
   updateProfileAvatar,
+  addCardToContainer
 }
