@@ -1,13 +1,6 @@
-// Управляем доступностью кнопки
-function enableSubmit(button) {
-  button.disabled = false;
-}
-
-function disableSubmit(button) {
-  button.disabled = true;
-}
-
 //Скрываем ошибку
+import {disableSubmit, enableSubmit} from "./utils";
+
 function showError(inputField, errorMessage, errorInputClass, errorSpanClass) {
   inputField.classList.add(errorInputClass);
   const spanId = "error-" + inputField.name;
