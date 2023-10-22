@@ -10,7 +10,7 @@ function toggleLikeCard(element) {
   element.classList.toggle('heart_active');
 }
 
-function setLikeCount(element, count){
+function setLikeCount(element, count) {
   element.textContent = count;
 }
 
@@ -35,7 +35,7 @@ function handleTrashClick(cardId, evt) {
     .then(() => {
       const cardsElement = evt.target.closest('.element');
 
-      deleteCard(cardsElement);
+      cardsElement.remove();
     })
     .catch(error => console.error(error));
 }
@@ -73,8 +73,4 @@ export function createCard(card) {
 
 export function addCardToContainer(element) {
   cardsContainer.prepend(element);
-}
-
-function deleteCard(element) {
-  element.remove();
 }
