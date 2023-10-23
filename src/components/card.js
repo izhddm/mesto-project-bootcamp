@@ -1,5 +1,4 @@
 import {handleInitImagePopup} from "./modal";
-import {getCurrentUserId} from "./utils";
 import {delCard, likeCard, unlikeCard} from "./api";
 
 const contentTemplate = document.getElementById('cardElementTemplate').content.querySelector('.element');
@@ -40,7 +39,7 @@ function handleTrashClick(cardId, card) {
     .catch(error => console.error(error));
 }
 
-export function createCard(card) {
+export function createCard(card, userId) {
   const cardTemplate = contentTemplate.cloneNode(true);
 
   const img = cardTemplate.querySelector('.element__image');
@@ -55,14 +54,14 @@ export function createCard(card) {
   const likeCounter = cardTemplate.querySelector('.heart__counter');
   likeBtn.addEventListener('click', handleHeartClick.bind(null, likeCounter, card._id, likeBtn));
 
-  if (checkLiked(card.likes, getCurrentUserId())) {
+  if (checkLiked(card.likes, userId)) {
     toggleLikeCard(likeBtn);
   }
   setLikeCount(likeCounter, card.likes.length);
 
   // Кнопка корзины
   const trashBtn = cardTemplate.querySelector('.element__trash');
-  if (getCurrentUserId() !== card.owner._id) {
+  if (userId !== card.owner._id) {
     trashBtn.remove();
   } else {
     trashBtn.addEventListener('click', handleTrashClick.bind(null, card._id, cardTemplate));

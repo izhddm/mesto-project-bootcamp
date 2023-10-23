@@ -8,7 +8,6 @@ import {addCard, getCards, getMyInfo, setMyAvatar, setMyInfo} from "./components
 import {
   addCardToContainer,
   profileAvatarBtn, profileEditBtn, profileJob, profileTitle,
-  setCurrentUserId,
   updateProfileAvatar,
   updateProfileInfo
 } from "./components/utils";
@@ -42,7 +41,7 @@ const handlePopupNewCardFormSubmit = (evt) => {
 
   addCard(newCardForm.place.value, newCardForm.url.value)
     .then((card) => {
-      addCardToContainer(createCard(card));
+      addCardToContainer(createCard(card, card.owner._id));
       closePopup(newCardModal);
       newCardForm.reset();
     })
@@ -107,15 +106,13 @@ newCardForm.addEventListener('submit', handlePopupNewCardFormSubmit);
 // Получим информацию о пользователе и карточки
 Promise.all([getMyInfo(), getCards()])
   .then(([myInfo, cards]) => {
-      setCurrentUserId(myInfo._id);
-
       // Информация о пользователе
       updateProfileAvatar(myInfo);
       updateProfileInfo(myInfo);
 
       // Карточки
       cards.reverse().forEach((card) => {
-        addCardToContainer(createCard(card));
+        addCardToContainer(createCard(card, myInfo._id));
       })
     }
   ).catch(error => {

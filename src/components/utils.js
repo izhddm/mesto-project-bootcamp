@@ -10,19 +10,6 @@ const profileAvatarBtn = profileInfo.querySelector('.profile__avatar-container')
 // Контейнер со всеми карточками
 const cardsContainer = document.querySelector('.cards__elements');
 
-// Id текущего пользователя
-let currentUserId = undefined;
-
-function getCurrentUserId() {
-  return currentUserId;
-}
-
-function setCurrentUserId(id) {
-  currentUserId = id;
-
-  return currentUserId;
-}
-
 // Запись информации о пользователе приходящей с бэкенда
 const updateProfileInfo = (userInfo) => {
   profileTitle.textContent = userInfo.name;
@@ -39,8 +26,6 @@ function addCardToContainer(element) {
 }
 
 export {
-  getCurrentUserId,
-  setCurrentUserId,
   profileAvatarBtn,
   profileTitle,
   profileJob,
