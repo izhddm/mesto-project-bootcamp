@@ -2,7 +2,7 @@ import {initImagePopup} from "./modal";
 import {getCurrentUserId} from "./utils";
 import {delCard, likeCard, unlikeCard} from "./api";
 
-const contentTemplate = document.getElementById('cardElementTemplate').content;
+const contentTemplate = document.getElementById('cardElementTemplate').content.querySelector('.element');
 export const newCardBtn = document.querySelector('.profile__add-button');
 
 // Проверка, что текущий юзер лайкнул карточку
@@ -32,18 +32,18 @@ async function handleHeartClick(counterElement, cardId) {
   }
 }
 
-function handleTrashClick(cardId, evt) {
+function handleTrashClick(cardId) {
   delCard(cardId)
     .then(() => {
-      const cardsElement = evt.target.closest('.element');
-
-      cardsElement.remove();
+      this.remove();
     })
     .catch(error => console.error(error));
 }
 
 export function createCard(card) {
   const cardTemplate = contentTemplate.cloneNode(true);
+
+  console.log(cardTemplate);
 
   const img = cardTemplate.querySelector('.element__image');
   img.src = card.link;
@@ -67,7 +67,7 @@ export function createCard(card) {
   if (getCurrentUserId() !== card.owner._id) {
     trashBtn.remove();
   } else {
-    trashBtn.addEventListener('click', handleTrashClick.bind(null, card._id));
+    trashBtn.addEventListener('click', handleTrashClick.bind(cardTemplate, card._id));
   }
 
   return cardTemplate;
