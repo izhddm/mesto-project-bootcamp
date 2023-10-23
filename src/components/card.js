@@ -16,13 +16,13 @@ function setLikeCount(element, count) {
   element.textContent = count;
 }
 
-async function handleHeartClick(counterElement, cardId) {
+async function handleHeartClick(counterElement, cardId, likeBtn) {
   try {
-    const response = this.classList.contains('heart_active')
+    const response = likeBtn.classList.contains('heart_active')
       ? await unlikeCard(cardId)
       : await likeCard(cardId);
 
-    toggleLikeCard(this);
+    toggleLikeCard(likeBtn);
 
     // Запишем кол-во лайков
     setLikeCount(counterElement, response.likes.length)
@@ -32,10 +32,10 @@ async function handleHeartClick(counterElement, cardId) {
   }
 }
 
-function handleTrashClick(cardId) {
+function handleTrashClick(cardId, card) {
   delCard(cardId)
     .then(() => {
-      this.remove();
+      card.remove();
     })
     .catch(error => console.error(error));
 }
@@ -53,7 +53,7 @@ export function createCard(card) {
   // Кнопка лайка
   const likeBtn = cardTemplate.querySelector('.heart__element');
   const likeCounter = cardTemplate.querySelector('.heart__counter');
-  likeBtn.addEventListener('click', handleHeartClick.bind(likeBtn, likeCounter, card._id));
+  likeBtn.addEventListener('click', handleHeartClick.bind(null, likeCounter, card._id, likeBtn));
 
   if (checkLiked(card.likes, getCurrentUserId())) {
     toggleLikeCard(likeBtn);
@@ -65,7 +65,7 @@ export function createCard(card) {
   if (getCurrentUserId() !== card.owner._id) {
     trashBtn.remove();
   } else {
-    trashBtn.addEventListener('click', handleTrashClick.bind(cardTemplate, card._id));
+    trashBtn.addEventListener('click', handleTrashClick.bind(null, card._id, cardTemplate));
   }
 
   return cardTemplate;
