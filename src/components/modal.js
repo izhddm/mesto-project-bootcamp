@@ -1,10 +1,10 @@
-const profilePopup = document.querySelector('.popup-profile');
-const profileAvatarPopup = document.querySelector('.popup-avatar');
-const newCardPopup = document.querySelector('.popup-new-card');
+const profileModal = document.querySelector('.popup-profile');
+const profileAvatarModal = document.querySelector('.popup-avatar');
+const newCardModal = document.querySelector('.popup-new-card');
 
-const imagePopup = document.querySelector('.popup-image');
-const pictureImageFile = imagePopup.querySelector('.popup__image');
-const captionImagePopup = imagePopup.querySelector('.popup__image-caption');
+const imageModal = document.querySelector('.popup-image');
+const pictureImageModal = imageModal.querySelector('.popup__image');
+const captionImageModal = imageModal.querySelector('.popup__image-caption');
 
 const popups = document.querySelectorAll('.popup');
 
@@ -33,10 +33,10 @@ function closePopup(popup) {
 }
 
 function handleInitImagePopup(name, link) {
-  pictureImageFile.src = link;
-  pictureImageFile.alt = name;
-  captionImagePopup.textContent = name;
-  openPopup(imagePopup);
+  pictureImageModal.src = link;
+  pictureImageModal.alt = name;
+  captionImageModal.textContent = name;
+  openPopup(imageModal);
 }
 
 // Событие закрытия по клику на оверлей или крестик для всех попапов
@@ -45,9 +45,9 @@ popups.forEach((popup) => {
 })
 
 export {
-  newCardPopup,
-  profilePopup,
-  profileAvatarPopup,
+  newCardModal,
+  profileModal,
+  profileAvatarModal,
   openPopup,
   closePopup,
   handleInitImagePopup

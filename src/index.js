@@ -1,7 +1,7 @@
 import './pages/index.css';
 
 import {createCard, newCardBtn} from "./components/card";
-import {profileAvatarPopup, closePopup, openPopup, profilePopup, newCardPopup,} from "./components/modal";
+import {profileAvatarModal, closePopup, openPopup, profileModal, newCardModal,} from "./components/modal";
 import {disableSubmit, enableSubmit, enableValidation} from "./components/validate";
 import {validationSettings} from "./components/data";
 import {addCard, getCards, getMyInfo, setMyAvatar, setMyInfo} from "./components/api";
@@ -21,12 +21,12 @@ const newCardForm = document.forms['edit-card'];
 const handleProfileEditBtnClick = () => {
   profileForm.username.value = profileTitle.textContent;
   profileForm.job.value = profileJob.textContent;
-  openPopup(profilePopup);
+  openPopup(profileModal);
 };
 
 const handleProfileAvatarEditBtnClick = () => {
   profileAvatarForm.reset();
-  openPopup(profileAvatarPopup);
+  openPopup(profileAvatarModal);
 };
 
 const handlePopupNewCardFormSubmit = (evt) => {
@@ -38,7 +38,7 @@ const handlePopupNewCardFormSubmit = (evt) => {
   addCard(newCardForm.place.value, newCardForm.url.value)
     .then((card) => {
       addCardToContainer(createCard(card));
-      closePopup(newCardPopup);
+      closePopup(newCardModal);
       newCardForm.reset();
     })
     .catch((error) => {
@@ -59,7 +59,7 @@ const handlePopupProfileFormSubmit = (evt) => {
   setMyInfo(profileForm.username.value, profileForm.job.value)
     .then((myInfo) => {
       updateProfileInfo(myInfo);
-      closePopup(profilePopup);
+      closePopup(profileModal);
     })
     .catch((error) => {
       enableSubmit(profileForm.submit);
@@ -79,7 +79,7 @@ const handlePopupProfileAvatarFormSubmit = (evt) => {
   setMyAvatar(profileAvatarForm.avatar.value)
     .then((myInfo) => {
       updateProfileAvatar(myInfo);
-      closePopup(profileAvatarPopup);
+      closePopup(profileAvatarModal);
     })
     .catch((error) => console.error(error))
     .finally(() => {
@@ -88,7 +88,7 @@ const handlePopupProfileAvatarFormSubmit = (evt) => {
     });
 }
 
-const handleNewCardButtonClick = () => openPopup(newCardPopup);
+const handleNewCardButtonClick = () => openPopup(newCardModal);
 
 
 newCardBtn.addEventListener('click', handleNewCardButtonClick);
