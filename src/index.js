@@ -2,12 +2,12 @@ import './pages/index.css';
 
 import {createCard, newCardBtn} from "./components/card";
 import {
-  profileForm, popups, newCardForm,
+  profileForm, newCardForm,
   handleNewCardButtonClick,
   handlePopupNewCardFormSubmit,
   handlePopupProfileFormSubmit,
   handleProfileEditBtnClick,
-  handleClosePopup, profileAvatarForm, handlePopupProfileAvatarFormSubmit, handleProfileAvatarEditBtnClick,
+  profileAvatarForm, handlePopupProfileAvatarFormSubmit, handleProfileAvatarEditBtnClick,
 } from "./components/modal";
 import {enableValidation} from "./components/validate";
 import {validationSettings} from "./components/data";
@@ -21,9 +21,6 @@ import {
   updateProfileInfo
 } from "./components/utils";
 
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', handleClosePopup.bind(null, popup))
-})
 
 newCardBtn.addEventListener('click', handleNewCardButtonClick);
 profileEditBtn.addEventListener('click', handleProfileEditBtnClick);

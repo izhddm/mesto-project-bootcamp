@@ -127,12 +127,16 @@ function initImagePopup(name, link) {
   openPopup(imagePopup);
 }
 
+// Событие закрытия по клику на оверлей или крестик для всех попапов
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', handleClosePopup.bind(null, popup))
+})
+
 export {
   profileForm,
   profileAvatarPopup,
   profileAvatarForm,
   newCardForm,
-  popups,
   handleNewCardButtonClick,
   handleProfileAvatarEditBtnClick,
   handlePopupNewCardFormSubmit,
@@ -140,7 +144,6 @@ export {
   handlePopupProfileAvatarFormSubmit,
   handleProfileEditBtnClick,
   handleEscKeyPress,
-  handleClosePopup,
   openPopup,
   initImagePopup
 }
