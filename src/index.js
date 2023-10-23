@@ -1,7 +1,7 @@
 import './pages/index.css';
 
 import {createCard, newCardBtn} from "./components/card";
-import {profileAvatarModal, closePopup, openPopup, profileModal, newCardModal,} from "./components/modal";
+import {closePopup, openPopup} from "./components/modal";
 import {disableSubmit, enableSubmit, enableValidation} from "./components/validate";
 import {validationSettings} from "./components/data";
 import {addCard, getCards, getMyInfo, setMyAvatar, setMyInfo} from "./components/api";
@@ -12,6 +12,11 @@ import {
   updateProfileAvatar,
   updateProfileInfo
 } from "./components/utils";
+
+// Модальные окна
+const profileModal = document.querySelector('.popup-profile');
+const profileAvatarModal = document.querySelector('.popup-avatar');
+const newCardModal = document.querySelector('.popup-new-card');
 
 // Формы с модальных окон
 const profileForm = document.forms['edit-profile'];

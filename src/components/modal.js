@@ -1,7 +1,3 @@
-const profileModal = document.querySelector('.popup-profile');
-const profileAvatarModal = document.querySelector('.popup-avatar');
-const newCardModal = document.querySelector('.popup-new-card');
-
 const imageModal = document.querySelector('.popup-image');
 const pictureImageModal = imageModal.querySelector('.popup__image');
 const captionImageModal = imageModal.querySelector('.popup__image-caption');
@@ -45,9 +41,6 @@ popups.forEach((popup) => {
 })
 
 export {
-  newCardModal,
-  profileModal,
-  profileAvatarModal,
   openPopup,
   closePopup,
   handleInitImagePopup
