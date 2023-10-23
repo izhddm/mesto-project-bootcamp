@@ -43,8 +43,6 @@ function handleTrashClick(cardId) {
 export function createCard(card) {
   const cardTemplate = contentTemplate.cloneNode(true);
 
-  console.log(cardTemplate);
-
   const img = cardTemplate.querySelector('.element__image');
   img.src = card.link;
   img.alt = card.name;
