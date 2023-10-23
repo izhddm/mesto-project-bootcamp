@@ -92,5 +92,3 @@ function unlikeCard(id) {
 }
 
 export {getMyInfo, setMyInfo, setMyAvatar, getCards, addCard, delCard, likeCard, unlikeCard}
-
-
