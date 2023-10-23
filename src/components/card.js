@@ -1,4 +1,4 @@
-import {initImagePopup} from "./modal";
+import {handleInitImagePopup} from "./modal";
 import {getCurrentUserId} from "./utils";
 import {delCard, likeCard, unlikeCard} from "./api";
 
@@ -46,7 +46,7 @@ export function createCard(card) {
   const img = cardTemplate.querySelector('.element__image');
   img.src = card.link;
   img.alt = card.name;
-  img.addEventListener('click', initImagePopup.bind(null, card.name, card.link));
+  img.addEventListener('click', handleInitImagePopup.bind(null, card.name, card.link));
 
   cardTemplate.querySelector('.element__title').textContent = card.name;
 
